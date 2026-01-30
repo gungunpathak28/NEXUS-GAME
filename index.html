@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS Gaming Platform</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&amp;family=Russo+One&amp;display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full animated-bg text-white overflow-auto">
+  <div class="grid-overlay min-h-full w-full">
+    
+   <nav id="main-nav" class="hidden navbar-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+     <div class="flex items-center justify-between">
+      <div class="flex items-center gap-8">
+       <h1 id="nav-title" class="font-display text-2xl bg-gradient-to-r from-pink-500 to-cyan-500 bg-clip-text text-transparent">NEXUS GAMING</h1>
+       <div class="hidden md:flex gap-6"><button onclick="scrollToSection('games')" class="text-gray-300 hover:text-white transition">Games</button> <button onclick="scrollToSection('leaderboards')" class="text-gray-300 hover:text-white transition">Leaderboards</button> <button onclick="scrollToSection('about')" class="text-gray-300 hover:text-white transition">About</button>
+       </div>
+      </div>
+      <div id="nav-user-section" class="flex items-center gap-4">
+       <div id="nav-user-info" class="hidden flex items-center gap-3">
+        <div class="text-right">
+         <p id="nav-username" class="font-semibold text-sm"></p>
+         <p id="nav-user-score" class="text-xs text-gray-400"></p>
+        </div>
+        <div id="nav-avatar" class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg border-2 border-pink-500 pulse-ring"></div>
+       </div><button id="nav-admin-btn" onclick="showAdminPanel()" class="hidden px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full font-semibold hover:from-purple-600 hover:to-indigo-700 transition"> ⚙️ Admin </button> <button id="nav-login-btn" onclick="showAuthModal()" class="btn-shine px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition"> Sign In </button> <button id="nav-logout-btn" onclick="handleLogout()" class="hidden px-4 py-2 glass rounded-full text-sm hover:bg-white/10 transition"> Logout </button>
+      </div>
+     </div>
+    </div>
+   </nav>
+   
+   <section id="hero-section" class="relative min-h-screen flex items-center justify-center px-6 py-20">
+    <div class="hero-banner absolute inset-0"></div>
+    <div class="relative z-10 text-center max-w-5xl mx-auto">
+     <div class="float-anim mb-8">
+      <h1 id="hero-title" class="font-display text-6xl md:text-8xl mb-4 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">NEXUS GAMING</h1>
+      <p id="hero-tagline" class="text-xl md:text-3xl text-gray-300 mb-8">Enter the digital realm</p>
+     </div>
+     <div class="flex flex-wrap gap-4 justify-center mb-12"><button onclick="scrollToSection('games')" class="btn-shine px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-bold text-lg neon-glow"> 🎮 Explore Games </button> <button onclick="showAuthModal()" class="btn-shine px-8 py-4 glass rounded-full font-bold text-lg hover:bg-white/10 transition"> 🚀 Get Started </button>
+     </div><div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+      <div class="stat-card glass rounded-2xl p-6" style="animation-delay: 0.1s">
+       <p class="text-3xl font-bold text-pink-400" id="stat-players">1,247</p>
+       <p class="text-sm text-gray-400">Active Players</p>
+      </div>
+      <div class="stat-card glass rounded-2xl p-6" style="animation-delay: 0.2s">
+       <p class="text-3xl font-bold text-purple-400" id="stat-games">10</p>
+       <p class="text-sm text-gray-400">Games Available</p>
+      </div>
+      <div class="stat-card glass rounded-2xl p-6" style="animation-delay: 0.3s">
+       <p class="text-3xl font-bold text-cyan-400" id="stat-matches">8,432</p>
+       <p class="text-sm text-gray-400">Matches Played</p>
+      </div>
+      <div class="stat-card glass rounded-2xl p-6" style="animation-delay: 0.4s">
+       <p class="text-3xl font-bold text-yellow-400" id="stat-online">342</p>
+       <p class="text-sm text-gray-400">Online Now</p>
+      </div>
+     </div>
+    </div><div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+     <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+     </svg>
+    </div>
+   </section>
+   
+   <section id="games" class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 id="featured-title" class="font-display text-4xl md:text-5xl mb-4 bg-gradient-to-r from-pink-500 to-cyan-500 bg-clip-text text-transparent">Featured Games</h2>
+      <p class="text-gray-400 text-lg">Choose your battlefield</p>
+     </div><div id="games-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </div>
+   </section>
+   
+   <section id="leaderboards" class="py-20 px-6 bg-black/20">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-4xl md:text-5xl mb-4 bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">🏆 TOP PLAYERS</h2>
+      <p class="text-gray-400 text-lg">The hall of champions</p>
+     </div><div class="flex flex-wrap gap-2 justify-center mb-8"><button onclick="filterLeaderboard('all')" class="leaderboard-filter px-5 py-2 rounded-full glass border-2 border-pink-500 text-pink-300 font-semibold" data-filter="all">All Games</button> <button onclick="filterLeaderboard('snake')" class="leaderboard-filter px-5 py-2 rounded-full glass-dark text-gray-300" data-filter="snake">🐍 Snake</button> <button onclick="filterLeaderboard('memory')" class="leaderboard-filter px-5 py-2 rounded-full glass-dark text-gray-300" data-filter="memory">🧠 Memory</button> <button onclick="filterLeaderboard('clicker')" class="leaderboard-filter px-5 py-2 rounded-full glass-dark text-gray-300" data-filter="clicker">👆 Clicker</button> <button onclick="filterLeaderboard('reaction')" class="leaderboard-filter px-5 py-2 rounded-full glass-dark text-gray-300" data-filter="reaction">⚡ Reaction</button> <button onclick="filterLeaderboard('tictactoe')" class="leaderboard-filter px-5 py-2 rounded-full glass-dark text-gray-300" data-filter="tictactoe">⭕ Tic Tac Toe</button>
+     </div><div id="podium" class="grid grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto"></div><div id="leaderboard-list" class="glass-dark rounded-3xl p-6 max-w-3xl mx-auto"></div>
+    </div>
+   </section>
+   
+   <section id="about" class="py-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+     <h2 class="font-display text-4xl md:text-5xl mb-6 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">ABOUT NEXUS</h2>
+     <p class="text-gray-300 text-lg leading-relaxed mb-8">Welcome to the ultimate gaming platform where champions are born. Compete in thrilling games, climb the leaderboards, and prove your skills against players worldwide. Every match counts, every victory matters. Are you ready to become a legend?</p>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass rounded-2xl p-6">
+       <div class="text-4xl mb-3">
+        ⚡
+       </div>
+       <h3 class="font-bold text-xl mb-2">Lightning Fast</h3>
+       <p class="text-gray-400 text-sm">Instant matchmaking and seamless gameplay</p>
+      </div>
+      <div class="glass rounded-2xl p-6">
+       <div class="text-4xl mb-3">
+        🛡️
+       </div>
+       <h3 class="font-bold text-xl mb-2">Secure Platform</h3>
+       <p class="text-gray-400 text-sm">Your data is protected with enterprise security</p>
+      </div>
+      <div class="glass rounded-2xl p-6">
+       <div class="text-4xl mb-3">
+        🎯
+       </div>
+       <h3 class="font-bold text-xl mb-2">Fair Competition</h3>
+       <p class="text-gray-400 text-sm">Balanced gameplay for all skill levels</p>
+      </div>
+     </div>
+    </div>
+   </section>
+   
+   <footer class="py-8 px-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto text-center text-gray-400">
+     <p class="mb-2">© 2024 NEXUS Gaming. All rights reserved.</p>
+     <p class="text-sm">Built with passion for gamers, by gamers.</p>
+    </div>
+   </footer>
+   
+   <div id="auth-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+    <div class="glass-dark rounded-3xl p-8 w-full max-w-md border border-pink-500/30">
+     <div class="flex justify-between items-center mb-6">
+      <h2 id="auth-modal-title" class="font-display text-2xl bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">SIGN IN</h2><button onclick="closeAuthModal()" class="text-gray-400 hover:text-white text-3xl">×</button>
+     </div><div id="login-form">
+      <div class="space-y-4">
+       <div><label for="login-username" class="block text-sm text-gray-400 mb-2">Username</label> <input type="text" id="login-username" class="w-full bg-black/50 border border-pink-500/30 rounded-lg px-4 py-3 text-white focus:border-pink-500 focus:outline-none transition" placeholder="Enter your username">
+       </div>
+       <p id="login-error" class="text-red-400 text-sm hidden"></p><button onclick="handleLogin()" class="btn-shine w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-3 rounded-lg hover:from-pink-600 hover:to-purple-700 transition"> LOGIN </button>
+       <p class="text-center text-gray-400 text-sm">New player? <button onclick="showRegister()" class="text-pink-400 hover:underline font-semibold">Create Account</button></p>
+      </div>
+     </div><div id="register-form" class="hidden">
+      <div class="space-y-4">
+       <div><label for="reg-username" class="block text-sm text-gray-400 mb-2">Username</label> <input type="text" id="reg-username" class="w-full bg-black/50 border border-pink-500/30 rounded-lg px-4 py-3 text-white focus:border-pink-500 focus:outline-none transition" placeholder="Choose username">
+       </div>
+       <div><label for="reg-email" class="block text-sm text-gray-400 mb-2">Email</label> <input type="email" id="reg-email" class="w-full bg-black/50 border border-pink-500/30 rounded-lg px-4 py-3 text-white focus:border-pink-500 focus:outline-none transition" placeholder="Enter email">
+       </div>
+       <div><label for="reg-password" class="block text-sm text-gray-400 mb-2">Password</label> <input type="password" id="reg-password" class="w-full bg-black/50 border border-pink-500/30 rounded-lg px-4 py-3 text-white focus:border-pink-500 focus:outline-none transition" placeholder="Create password">
+       </div>
+       <div class="flex items-center gap-2"><input type="checkbox" id="reg-admin" class="w-4 h-4"> <label for="reg-admin" class="text-sm text-gray-400">Register as Admin</label>
+       </div>
+       <p id="reg-error" class="text-red-400 text-sm hidden"></p><button onclick="handleRegister()" class="btn-shine w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-3 rounded-lg hover:from-pink-600 hover:to-purple-700 transition"> CREATE ACCOUNT </button>
+       <p class="text-center text-gray-400 text-sm">Already have an account? <button onclick="showLogin()" class="text-pink-400 hover:underline font-semibold">Sign In</button></p>
+      </div>
+     </div>
+    </div>
+   </div><div id="admin-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-auto">
+    <div class="glass-dark rounded-3xl w-full max-w-5xl border border-purple-500/30 my-8 max-h-[90vh] overflow-auto">
+     <div class="sticky top-0 glass-dark flex items-center justify-between p-6 border-b border-white/10 z-10">
+      <h2 class="font-display text-2xl bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">⚙️ ADMIN PANEL</h2><button onclick="closeAdminPanel()" class="text-gray-400 hover:text-white text-3xl">×</button>
+     </div>
+     <div class="p-8"><div class="glass rounded-2xl p-6 mb-8">
+       <h3 class="text-2xl font-bold mb-4 text-purple-400">➕ Add New Game</h3>
+       <div class="grid md:grid-cols-2 gap-4">
+        <div><label for="admin-game-id" class="block text-sm text-gray-400 mb-2">Game ID</label> <input type="text" id="admin-game-id" class="w-full bg-black/50 border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:border-purple-500 focus:outline-none transition" placeholder="e.g., racing">
+        </div>
+        <div><label for="admin-game-name" class="block text-sm text-gray-400 mb-2">Game Name</label> <input type="text" id="admin-game-name" class="w-full bg-black/50 border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:border-purple-500 focus:outline-none transition" placeholder="e.g., 🏎️ Racing Game">
+        </div>
+        <div><label for="admin-game-desc" class="block text-sm text-gray-400 mb-2">Description</label> <input type="text" id="admin-game-desc" class="w-full bg-black/50 border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:border-purple-500 focus:outline-none transition" placeholder="e.g., Speed racing action">
+        </div>
+        <div><label for="admin-game-color" class="block text-sm text-gray-400 mb-2">Gradient Colors</label> <input type="text" id="admin-game-color" class="w-full bg-black/50 border border-purple-500/30 rounded-lg px-4 py-3 text-white focus:border-purple-500 focus:outline-none transition" placeholder="e.g., from-red-500 to-orange-600">
+        </div>
+       </div>
+       <p id="admin-add-error" class="text-red-400 text-sm mt-2 hidden"></p><button onclick="addNewGame()" class="mt-4 px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg hover:from-green-600 hover:to-emerald-700 transition"> Add Game </button>
+      </div><div class="glass rounded-2xl p-6">
+       <h3 class="text-2xl font-bold mb-4 text-cyan-400">📋 Manage Games</h3>
+       <div id="admin-games-list" class="space-y-3"></div>
+      </div>
+     </div>
+    </div>
+   </div><div id="game-modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+    <div class="glass-dark rounded-3xl w-full max-w-4xl border border-cyan-500/30 overflow-hidden">
+     <div class="flex items-center justify-between p-6 border-b border-white/10">
+      <h2 id="game-modal-title" class="font-display text-2xl text-cyan-400"></h2>
+      <div class="flex items-center gap-4">
+       <p class="text-gray-400">Score: <span id="game-score" class="text-cyan-400 font-bold text-xl">0</span></p><button onclick="closeGameModal()" class="text-gray-400 hover:text-white text-3xl">×</button>
+      </div>
+     </div>
+     <div id="game-container" class="p-8 min-h-[500px] flex items-center justify-center"></div>
+    </div>
+   </div>
+  </div>
+  
+  <script src="script.js"></script>
+ </body>
+</html>
